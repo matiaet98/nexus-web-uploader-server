@@ -7,7 +7,7 @@
 ## Construccion de la imagen
 
 ~~~
-docker build -t nexus-web-uploader-server:1.0.0 .
+docker build -t nexus-web-uploader-srv:1.0.0 .
 ~~~
 
 *En lugar de 1.0.0 va la version de la imagen*
@@ -15,7 +15,7 @@ docker build -t nexus-web-uploader-server:1.0.0 .
 ## Taggear como última *(opcional)*
 
 ~~~
-docker tag nexus-web-uploader-server:1.0.0 nexus-web-uploader-server:latest
+docker tag nexus-web-uploader-server:1.0.0 nexus-web-uploader-srv:latest
 ~~~
 
 ## Correr aplicacion (iniciar el container)
@@ -26,7 +26,7 @@ Para iniciar el container se utiliza el siguiente comando
 docker network create nwu-net
 docker run -d --name nwu-api --network nwu-net nexuswebuploaderapi
 docker run -d --name nwu-ui --network nwu-net nexus-web-uploader-ui
-docker run -d -p 80:80 --name nwu-srv --network nwu-net nexus-web-uploader-server
+docker run -d -p 80:80 --name nwu-srv --network nwu-net nexus-web-uploader-srv
 ~~~
 
 ## Parar container
@@ -46,13 +46,13 @@ docker network rm nwu-net
 Si queremos hacer espacio, se puede borrar las imagenes de la suguiente manera:
 
 ~~~
-docker rmi nexus-web-uploader-server:1.0.0
+docker rmi nexus-web-uploader-srv:1.0.0
 ~~~
 
 Tambien se pueden remover tags:
 
 ~~~
-docker rmi nexus-web-uploader-server:latest
+docker rmi nexus-web-uploader-srv:latest
 ~~~
 
 ## Ingresar al container
@@ -60,5 +60,5 @@ docker rmi nexus-web-uploader-server:latest
 Si fuese necesario ingresar al container para realizar alguna verificacion, se puede con el comando:
 
 ~~~
-docker exec -it nwebup /bin/sh
+docker exec -it nwu-srv /bin/sh
 ~~~
